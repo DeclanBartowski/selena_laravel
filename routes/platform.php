@@ -17,6 +17,8 @@ use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
+use App\Orchid\Screens\Social\SocialListScreen;
+use App\Orchid\Screens\Social\SocialEditScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,5 +97,18 @@ Route::screen('example-charts', ExampleChartsScreen::class)->name('platform.exam
 Route::screen('example-editors', ExampleTextEditorsScreen::class)->name('platform.example.editors');
 Route::screen('example-cards', ExampleCardsScreen::class)->name('platform.example.cards');
 Route::screen('example-advanced', ExampleFieldsAdvancedScreen::class)->name('platform.example.advanced');
+
+// Platform > Socials
+Route::screen('socials', SocialListScreen::class)
+    ->name('platform.social.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.social.name')));
+// Platform > Socials > Social
+Route::screen('social/{id?}', SocialEditScreen::class)
+    ->name('platform.social.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.social.list')
+        ->push(__('platform.social.name_once')));
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

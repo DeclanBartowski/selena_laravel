@@ -18,7 +18,6 @@ class PlatformProvider extends OrchidServiceProvider
     public function boot(Dashboard $dashboard): void
     {
         parent::boot($dashboard);
-
         // ...
     }
 
@@ -28,7 +27,11 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerMainMenu(): array
     {
         return [
-            Menu::make('Example screen')
+            Menu::make(__('platform.social.name'))
+                ->icon('monitor')
+                ->route('platform.social.list')
+                ->title(__('platform.entity.office')),
+            /*Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')
                 ->title('Navigation')
@@ -88,7 +91,7 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make(__('Roles'))
                 ->icon('lock')
                 ->route('platform.systems.roles')
-                ->permission('platform.systems.roles'),
+                ->permission('platform.systems.roles'),*/
         ];
     }
 
