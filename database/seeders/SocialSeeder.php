@@ -18,21 +18,21 @@ class SocialSeeder extends Seeder
         $arItems = [
             [
                 'name' => 'Mail',
-                'icon' => '/storage/static/mail.svg',
+                'icon' => '/static/img/social/mail.svg',
                 'active'=>true,
                 'sort' => 100,
                 'link'=>'mailto:test@test.ru',
             ],
             [
                 'name' => 'Telegramm',
-                'icon' => '/storage/static/tg.svg',
+                'icon' => '/static/img/social/tg.svg',
                 'active'=>true,
                 'sort' => 200,
                 'link'=>'https://web.telegram.org/z/',
             ],
             [
                 'name' => 'Whatsapp',
-                'icon' => '/storage/static/wa.svg',
+                'icon' => '/static/img/social/wa.svg',
                 'active'=>true,
                 'sort' => 300,
                 'link'=>'https://www.whatsapp.com/?lang=ru',
