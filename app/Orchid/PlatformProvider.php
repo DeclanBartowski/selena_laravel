@@ -31,6 +31,9 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('monitor')
                 ->route('platform.social.list')
                 ->title(__('platform.entity.office')),
+            Menu::make(__('platform.contact.name'))
+                ->icon('monitor')
+                ->route('platform.contact.list'),
             /*Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')

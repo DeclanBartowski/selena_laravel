@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 use App\Orchid\Screens\Social\SocialListScreen;
 use App\Orchid\Screens\Social\SocialEditScreen;
+use App\Orchid\Screens\Contact\ContactListScreen;
+use App\Orchid\Screens\Contact\ContactEditScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,5 +112,19 @@ Route::screen('social/{id?}', SocialEditScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.social.list')
         ->push(__('platform.social.name_once')));
+
+
+// Platform > Socials
+Route::screen('contacts', ContactListScreen::class)
+    ->name('platform.contact.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.contact.name')));
+// Platform > Socials > Social
+Route::screen('contact/{id?}', ContactEditScreen::class)
+    ->name('platform.contacts.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.contact.list')
+        ->push(__('platform.contact.name')));
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
