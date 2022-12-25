@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('form_results', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('title');
             $table->string('name');
-            $table->json('fields');
+            $table->string('email');
+            $table->string('phone');
         });
     }
 

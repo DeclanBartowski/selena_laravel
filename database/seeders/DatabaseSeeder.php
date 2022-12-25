@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\FormResult;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
             AdvantageSeeder::class,
             TextBlocksSeeder::class,
         ]);
+        FormResult::factory()->count(10)->create();
     }
 }

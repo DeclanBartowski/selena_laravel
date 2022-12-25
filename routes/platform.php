@@ -13,6 +13,8 @@ use App\Orchid\Screens\Examples\ExampleFieldsScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\FormResult\FormResultEditScreen;
+use App\Orchid\Screens\FormResult\FormResultListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -168,3 +170,14 @@ Route::screen('text_block/{id?}', TextBlockEditScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.text_block.list')
         ->push(__('platform.text_block.name')));
+
+Route::screen('form_results', FormResultListScreen::class)
+    ->name('platform.form_result.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.form_result.name')));
+Route::screen('form_result/{id?}', FormResultEditScreen::class)
+    ->name('platform.form_results.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.form_result.list')
+        ->push(__('platform.form_result.name')));
