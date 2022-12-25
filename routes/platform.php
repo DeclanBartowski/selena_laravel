@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\Advantage\AdvantageEditScreen;
+use App\Orchid\Screens\Advantage\AdvantageListScreen;
 use App\Orchid\Screens\Cabinet\CabinetEditScreen;
 use App\Orchid\Screens\Cabinet\CabinetListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -141,5 +143,18 @@ Route::screen('cabinet/{id?}', CabinetEditScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.cabinet.list')
         ->push(__('platform.cabinet.name')));
+
+
+Route::screen('advantages', AdvantageListScreen::class)
+    ->name('platform.advantage.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.advantage.name')));
+// Platform > Socials > Social
+Route::screen('advantage/{id?}', AdvantageEditScreen::class)
+    ->name('platform.advantages.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.advantage.list')
+        ->push(__('platform.advantage.name')));
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

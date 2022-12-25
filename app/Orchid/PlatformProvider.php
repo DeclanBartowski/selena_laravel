@@ -37,6 +37,9 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make(__('platform.cabinet.name'))
                 ->icon('monitor')
                 ->route('platform.cabinet.list'),
+            Menu::make(__('platform.advantage.name'))
+                ->icon('monitor')
+                ->route('platform.advantage.list'),
             /*Menu::make('Example screen')
                 ->icon('monitor')
                 ->route('platform.example')
