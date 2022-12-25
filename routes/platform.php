@@ -16,6 +16,8 @@ use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\TextBlock\TextBlockEditScreen;
+use App\Orchid\Screens\TextBlock\TextBlockListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
@@ -150,11 +152,19 @@ Route::screen('advantages', AdvantageListScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.index')
         ->push(__('platform.advantage.name')));
-// Platform > Socials > Social
 Route::screen('advantage/{id?}', AdvantageEditScreen::class)
     ->name('platform.advantages.edit')
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.advantage.list')
         ->push(__('platform.advantage.name')));
 
-//Route::screen('idea', Idea::class, 'platform.screens.idea');
+Route::screen('text_blocks', TextBlockListScreen::class)
+    ->name('platform.text_block.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.text_block.name')));
+Route::screen('text_block/{id?}', TextBlockEditScreen::class)
+    ->name('platform.text_blocks.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.text_block.list')
+        ->push(__('platform.text_block.name')));

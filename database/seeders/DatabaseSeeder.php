@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             CabinetSeeder::class,
             AdvantageSeeder::class,
+            TextBlocksSeeder::class,
         ]);
     }
 }

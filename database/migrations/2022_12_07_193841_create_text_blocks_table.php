@@ -18,10 +18,13 @@ return new class extends Migration
             $table->timestamps();
             $table->boolean('active')->default(true);
             $table->string('name');
+            $table->string('code');
             $table->string('link')->nullable();
             $table->string('video')->nullable();
-            $table->string('picture')->nullable();
-            $table->text('content')->nullable();
+            $table->string('preview_picture')->nullable();
+            $table->text('preview_content')->nullable();
+            $table->string('detail_picture')->nullable();
+            $table->text('detail_content')->nullable();
         });
     }
 
