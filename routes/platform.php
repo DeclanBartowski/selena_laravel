@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\Cabinet\CabinetEditScreen;
+use App\Orchid\Screens\Cabinet\CabinetListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
 use App\Orchid\Screens\Examples\ExampleFieldsAdvancedScreen;
@@ -126,5 +128,18 @@ Route::screen('contact/{id?}', ContactEditScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.contact.list')
         ->push(__('platform.contact.name')));
+
+
+Route::screen('cabinets', CabinetListScreen::class)
+    ->name('platform.cabinet.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.cabinet.name')));
+// Platform > Socials > Social
+Route::screen('cabinet/{id?}', CabinetEditScreen::class)
+    ->name('platform.cabinets.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.cabinet.list')
+        ->push(__('platform.cabinet.name')));
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

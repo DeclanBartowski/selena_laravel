@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SocialSeeder::class,
             ContactSeeder::class,
+            CabinetSeeder::class,
         ]);
     }
 }
