@@ -7,17 +7,10 @@ namespace App\Orchid\Screens\Contact;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Models\Social;
-use App\Orchid\Layouts\Role\RoleEditLayout;
-use App\Orchid\Layouts\Role\RolePermissionLayout;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
-use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -71,12 +64,12 @@ class ContactEditScreen extends Screen
      */
     public function commandBar(): iterable
     {
-       return  [
-           Button::make(__('Save'))
-               ->icon('check')
-               ->method('createOrUpdate')
-               ->canSee($this->contact->exists),
-       ];
+        return [
+            Button::make(__('Save'))
+                ->icon('check')
+                ->method('createOrUpdate')
+                ->canSee($this->contact->exists),
+        ];
     }
 
     /**

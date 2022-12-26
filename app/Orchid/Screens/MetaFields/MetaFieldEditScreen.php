@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Screens\FormResult;
+namespace App\Orchid\Screens\MetaFields;
 
-use App\Http\Requests\FormResultRequest;
-use App\Models\FormResult;
+use App\Http\Requests\MetaFieldsRequest;
+use App\Models\MetaField;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
@@ -13,24 +13,24 @@ use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class FormResultEditScreen extends Screen
+class MetaFieldEditScreen extends Screen
 {
     /**
-     * @var FormResult
+     * @var MetaField
      */
-    public $form_result;
+    public $metaField;
 
     /**
      * Query data.
      *
-     * @param FormResult $form_result
+     * @param MetaField $meta_field
      *
      * @return array
      */
-    public function query(FormResult $form_result): iterable
+    public function query(MetaField $metaField): iterable
     {
         return [
-            'form_result' => $form_result,
+            'metaField' => $metaField,
         ];
     }
 
@@ -41,7 +41,7 @@ class FormResultEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->form_result->exists ? __('Edit') : __('Add');
+        return $this->metaField->exists ? __('Edit') : __('Add');
     }
 
     /**
@@ -51,7 +51,7 @@ class FormResultEditScreen extends Screen
      */
     public function description(): ?string
     {
-        return __('platform.form_result.name');
+        return __('platform.meta_fields.name');
     }
 
     /**
@@ -65,15 +65,15 @@ class FormResultEditScreen extends Screen
            Button::make(__('Add'))
                ->icon('pencil')
                ->method('createOrUpdate')
-               ->canSee(! $this->form_result->exists),
+               ->canSee(! $this->metaField->exists),
            Button::make(__('Save'))
                ->icon('check')
                ->method('createOrUpdate')
-               ->canSee($this->form_result->exists),
+               ->canSee($this->metaField->exists),
            Button::make(__('Remove'))
                ->icon('trash')
                ->method('remove')
-               ->canSee($this->form_result->exists),
+               ->canSee($this->metaField->exists),
        ];
     }
 
@@ -86,41 +86,42 @@ class FormResultEditScreen extends Screen
     {
         return [
             Layout::rows([
-                Input::make('form_result.id')->readonly()->hidden(),
-                Input::make('form_result.title')->title(__('admin_form_results.title')),
-                Input::make('form_result.name')->title(__('admin_form_results.name')),
-                Input::make('form_result.email')->title(__('admin_form_results.email')),
-                Input::make('form_result.phone')->title(__('admin_form_results.phone')),
+                Input::make('metaField.id')->readonly()->hidden(),
+                Input::make('metaField.route')->title(__('admin_meta_fields.route')),
+                Input::make('metaField.title')->title(__('admin_meta_fields.title')),
+                Input::make('metaField.keywords')->title(__('admin_meta_fields.keywords')),
+                Input::make('metaField.description')->title(__('admin_meta_fields.description')),
             ])
         ];
     }
 
     /**
-     * @param FormResultRequest $formResultRequest
-     * @param FormResult $formResult
+     * @param MetaFieldsRequest $metaFieldsRequest
+     * @param MetaField $metaField
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function createOrUpdate(FormResultRequest $formResultRequest, FormResult $formResult)
+    public function createOrUpdate(MetaFieldsRequest $metaFieldsRequest, MetaField $metaField)
     {
-        $formResult->fill($formResultRequest->validated('form_result'));
-        $formResult->save();
+        $metaField->fill($metaFieldsRequest->validated('metaField'));
+        $metaField->save();
         Toast::info(__('platform.entity.saved'));
-        return redirect()->route('platform.form_result.list');
+        return redirect()->route('platform.meta_field.list');
     }
 
+
     /**
-     * @param FormResult $formResult
+     * @param MetaField $metaField
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      *
      */
-    public function remove(FormResult $formResult)
+    public function remove(MetaField $metaField)
     {
-        $formResult->delete();
+        $metaField->delete();
         Toast::info(__('platform.entity.removed'));
-        return redirect()->route('platform.form_result.list');
+        return redirect()->route('platform.meta_field.list');
     }
 
 }

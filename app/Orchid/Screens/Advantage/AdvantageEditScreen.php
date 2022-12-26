@@ -5,22 +5,12 @@ declare(strict_types=1);
 namespace App\Orchid\Screens\Advantage;
 
 use App\Http\Requests\AdvantageRequest;
-use App\Http\Requests\ContactRequest;
 use App\Models\Advantage;
-use App\Models\Contact;
-use App\Models\Social;
-use App\Orchid\Layouts\Role\RoleEditLayout;
-use App\Orchid\Layouts\Role\RolePermissionLayout;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
-use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
@@ -74,16 +64,20 @@ class AdvantageEditScreen extends Screen
      */
     public function commandBar(): iterable
     {
-       return  [
-           Button::make(__('Add'))
-               ->icon('pencil')
-               ->method('createOrUpdate')
-               ->canSee(! $this->advantage->exists),
-           Button::make(__('Save'))
-               ->icon('check')
-               ->method('createOrUpdate')
-               ->canSee($this->advantage->exists),
-       ];
+        return [
+            Button::make(__('Add'))
+                ->icon('pencil')
+                ->method('createOrUpdate')
+                ->canSee(!$this->advantage->exists),
+            Button::make(__('Save'))
+                ->icon('check')
+                ->method('createOrUpdate')
+                ->canSee($this->advantage->exists),
+            Button::make(__('Remove'))
+                ->icon('trash')
+                ->method('remove')
+                ->canSee($this->advantage->exists),
+        ];
     }
 
     /**
@@ -116,6 +110,20 @@ class AdvantageEditScreen extends Screen
         $advantage->fill($advantageRequest->validated('advantage'));
         $advantage->save();
         Toast::info(__('platform.entity.saved'));
+        return redirect()->route('platform.advantage.list');
+    }
+
+    /**
+     * @param Advantage $advantage
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     *
+     */
+    public function remove(Advantage $advantage)
+    {
+        $advantage->delete();
+        Toast::info(__('platform.entity.removed'));
         return redirect()->route('platform.advantage.list');
     }
 

@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Screens\Cabinet;
+namespace App\Orchid\Screens\MetaFields;
 
-use App\Models\Cabinet;
-use App\Orchid\Layouts\Cabinet\CabinetListLayout;
+use App\Models\MetaField;
+use App\Orchid\Layouts\MetaFields\MetaFieldsListLayout;
 use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
-class CabinetListScreen extends Screen
+class MetaFieldListScreen extends Screen
 {
     /**
      * Query data.
@@ -18,9 +19,9 @@ class CabinetListScreen extends Screen
      */
     public function query(): iterable
     {
-        return [
-            'cabinet' => Cabinet::filters()->defaultSort('id')->paginate(),
-        ];
+       return [
+           'meta_field' => MetaField::filters()->defaultSort('id')->paginate(),
+       ];
     }
 
     /**
@@ -30,7 +31,7 @@ class CabinetListScreen extends Screen
      */
     public function name(): ?string
     {
-        return __('platform.cabinet.name');
+        return __('platform.meta_fields.name');
     }
 
     /**
@@ -51,7 +52,9 @@ class CabinetListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-
+            Link::make(__('Add'))
+                ->icon('plus')
+                ->href(route('platform.meta_fields.edit')),
         ];
     }
 
@@ -63,7 +66,7 @@ class CabinetListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            CabinetListLayout::class,
+            MetaFieldsListLayout::class,
         ];
     }
 }

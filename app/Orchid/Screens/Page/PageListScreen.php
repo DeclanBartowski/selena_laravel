@@ -2,14 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Screens\Cabinet;
+namespace App\Orchid\Screens\Page;
 
-use App\Models\Cabinet;
-use App\Orchid\Layouts\Cabinet\CabinetListLayout;
+use App\Models\Page;
+use App\Orchid\Layouts\Page\PageListLayout;
 use Orchid\Screen\Action;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
-class CabinetListScreen extends Screen
+class PageListScreen extends Screen
 {
     /**
      * Query data.
@@ -18,9 +19,9 @@ class CabinetListScreen extends Screen
      */
     public function query(): iterable
     {
-        return [
-            'cabinet' => Cabinet::filters()->defaultSort('id')->paginate(),
-        ];
+       return [
+           'page' => Page::filters()->defaultSort('id')->paginate(),
+       ];
     }
 
     /**
@@ -30,7 +31,7 @@ class CabinetListScreen extends Screen
      */
     public function name(): ?string
     {
-        return __('platform.cabinet.name');
+        return __('platform.page.name');
     }
 
     /**
@@ -51,7 +52,9 @@ class CabinetListScreen extends Screen
     public function commandBar(): iterable
     {
         return [
-
+            Link::make(__('Add'))
+                ->icon('plus')
+                ->href(route('platform.page.edit')),
         ];
     }
 
@@ -63,7 +66,7 @@ class CabinetListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            CabinetListLayout::class,
+            PageListLayout::class,
         ];
     }
 }

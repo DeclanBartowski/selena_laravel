@@ -36,4 +36,13 @@ return [
     'services' => [
         'name' => 'Услуги',
     ],
+    'meta_fields' => [
+        'name' => 'SEO поля',
+    ],
+    'page' => [
+        'name' => 'Текстовые страницы',
+    ],
+    'setting' => [
+        'name' => 'Настройки',
+    ],
 ];

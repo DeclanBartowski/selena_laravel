@@ -7,7 +7,6 @@ namespace App\Orchid\Screens\Contact;
 use App\Models\Contact;
 use App\Orchid\Layouts\Contact\ContactListLayout;
 use Orchid\Screen\Action;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
 

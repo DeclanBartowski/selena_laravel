@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Screens\FormResult;
+namespace App\Orchid\Screens\Setting;
 
-use App\Http\Requests\FormResultRequest;
-use App\Models\FormResult;
+
+use App\Http\Requests\SettingRequest;
+use App\Models\Setting;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
@@ -13,24 +14,24 @@ use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class FormResultEditScreen extends Screen
+class SettingEditScreen extends Screen
 {
     /**
-     * @var FormResult
+     * @var Setting
      */
-    public $form_result;
+    public $setting;
 
     /**
      * Query data.
      *
-     * @param FormResult $form_result
+     * @param Setting $setting
      *
      * @return array
      */
-    public function query(FormResult $form_result): iterable
+    public function query(Setting $setting): iterable
     {
         return [
-            'form_result' => $form_result,
+            'setting' => $setting,
         ];
     }
 
@@ -41,7 +42,7 @@ class FormResultEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->form_result->exists ? __('Edit') : __('Add');
+        return $this->setting->exists ? __('Edit') : __('Add');
     }
 
     /**
@@ -51,7 +52,7 @@ class FormResultEditScreen extends Screen
      */
     public function description(): ?string
     {
-        return __('platform.form_result.name');
+        return __('platform.setting.name');
     }
 
     /**
@@ -65,15 +66,15 @@ class FormResultEditScreen extends Screen
            Button::make(__('Add'))
                ->icon('pencil')
                ->method('createOrUpdate')
-               ->canSee(! $this->form_result->exists),
+               ->canSee(! $this->setting->exists),
            Button::make(__('Save'))
                ->icon('check')
                ->method('createOrUpdate')
-               ->canSee($this->form_result->exists),
+               ->canSee($this->setting->exists),
            Button::make(__('Remove'))
                ->icon('trash')
                ->method('remove')
-               ->canSee($this->form_result->exists),
+               ->canSee($this->setting->exists),
        ];
     }
 
@@ -86,41 +87,41 @@ class FormResultEditScreen extends Screen
     {
         return [
             Layout::rows([
-                Input::make('form_result.id')->readonly()->hidden(),
-                Input::make('form_result.title')->title(__('admin_form_results.title')),
-                Input::make('form_result.name')->title(__('admin_form_results.name')),
-                Input::make('form_result.email')->title(__('admin_form_results.email')),
-                Input::make('form_result.phone')->title(__('admin_form_results.phone')),
+                Input::make('setting.id')->readonly()->hidden(),
+                Input::make('setting.name')->title(__('admin_setting.name')),
+                Input::make('setting.code')->title(__('admin_setting.code')),
+                Input::make('setting.value')->title(__('admin_setting.value')),
             ])
         ];
     }
 
     /**
-     * @param FormResultRequest $formResultRequest
-     * @param FormResult $formResult
+     * @param SettingRequest $settingRequest
+     * @param Setting $setting
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function createOrUpdate(FormResultRequest $formResultRequest, FormResult $formResult)
+    public function createOrUpdate(SettingRequest $settingRequest, Setting $setting)
     {
-        $formResult->fill($formResultRequest->validated('form_result'));
-        $formResult->save();
+        $setting->fill($settingRequest->validated('setting'));
+        $setting->save();
         Toast::info(__('platform.entity.saved'));
-        return redirect()->route('platform.form_result.list');
+        return redirect()->route('platform.setting.list');
     }
 
+
     /**
-     * @param FormResult $formResult
+     * @param Setting $setting
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      *
      */
-    public function remove(FormResult $formResult)
+    public function remove(Setting $setting)
     {
-        $formResult->delete();
+        $setting->delete();
         Toast::info(__('platform.entity.removed'));
-        return redirect()->route('platform.form_result.list');
+        return redirect()->route('platform.setting.list');
     }
 
 }

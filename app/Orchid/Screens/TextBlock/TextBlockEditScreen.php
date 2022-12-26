@@ -4,25 +4,13 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\TextBlock;
 
-use App\Http\Requests\AdvantageRequest;
-use App\Http\Requests\ContactRequest;
 use App\Http\Requests\TextBlockRequest;
-use App\Models\Advantage;
-use App\Models\Contact;
-use App\Models\Social;
 use App\Models\TextBlock;
-use App\Orchid\Layouts\Role\RoleEditLayout;
-use App\Orchid\Layouts\Role\RolePermissionLayout;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Orchid\Platform\Models\Role;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\CheckBox;
-use Orchid\Screen\Fields\Group;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
-use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Screen;
@@ -86,6 +74,10 @@ class TextBlockEditScreen extends Screen
                ->icon('check')
                ->method('createOrUpdate')
                ->canSee($this->text_block->exists),
+           Button::make(__('Remove'))
+               ->icon('trash')
+               ->method('remove')
+               ->canSee($this->text_block->exists),
        ];
     }
 
@@ -123,6 +115,20 @@ class TextBlockEditScreen extends Screen
         $textBlock->fill($textBlockRequest->validated('text_block'));
         $textBlock->save();
         Toast::info(__('platform.entity.saved'));
+        return redirect()->route('platform.text_block.list');
+    }
+
+    /**
+     * @param TextBlock $textBlock
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
+     *
+     */
+    public function remove(TextBlock $textBlock)
+    {
+        $textBlock->delete();
+        Toast::info(__('platform.entity.removed'));
         return redirect()->route('platform.text_block.list');
     }
 

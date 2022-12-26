@@ -2,35 +2,37 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Screens\FormResult;
+namespace App\Orchid\Screens\Page;
 
-use App\Http\Requests\FormResultRequest;
-use App\Models\FormResult;
+use App\Http\Requests\PageRequest;
+use App\Models\Page;
 use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\CheckBox;
 use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\SimpleMDE;
 use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
 
-class FormResultEditScreen extends Screen
+class PageEditScreen extends Screen
 {
     /**
-     * @var FormResult
+     * @var Page
      */
-    public $form_result;
+    public $page;
 
     /**
      * Query data.
      *
-     * @param FormResult $form_result
+     * @param Page $page
      *
      * @return array
      */
-    public function query(FormResult $form_result): iterable
+    public function query(Page $page): iterable
     {
         return [
-            'form_result' => $form_result,
+            'page' => $page,
         ];
     }
 
@@ -41,7 +43,7 @@ class FormResultEditScreen extends Screen
      */
     public function name(): ?string
     {
-        return $this->form_result->exists ? __('Edit') : __('Add');
+        return $this->page->exists ? __('Edit') : __('Add');
     }
 
     /**
@@ -51,7 +53,7 @@ class FormResultEditScreen extends Screen
      */
     public function description(): ?string
     {
-        return __('platform.form_result.name');
+        return __('platform.page.name');
     }
 
     /**
@@ -65,15 +67,15 @@ class FormResultEditScreen extends Screen
            Button::make(__('Add'))
                ->icon('pencil')
                ->method('createOrUpdate')
-               ->canSee(! $this->form_result->exists),
+               ->canSee(! $this->page->exists),
            Button::make(__('Save'))
                ->icon('check')
                ->method('createOrUpdate')
-               ->canSee($this->form_result->exists),
+               ->canSee($this->page->exists),
            Button::make(__('Remove'))
                ->icon('trash')
                ->method('remove')
-               ->canSee($this->form_result->exists),
+               ->canSee($this->page->exists),
        ];
     }
 
@@ -86,41 +88,42 @@ class FormResultEditScreen extends Screen
     {
         return [
             Layout::rows([
-                Input::make('form_result.id')->readonly()->hidden(),
-                Input::make('form_result.title')->title(__('admin_form_results.title')),
-                Input::make('form_result.name')->title(__('admin_form_results.name')),
-                Input::make('form_result.email')->title(__('admin_form_results.email')),
-                Input::make('form_result.phone')->title(__('admin_form_results.phone')),
+                Input::make('page.id')->readonly()->hidden(),
+                CheckBox::make('page.active')->sendTrueOrFalse()->title(__('admin_page.active')),
+                Input::make('page.code')->title(__('admin_page.code')),
+                Input::make('page.title')->title(__('admin_page.title')),
+                SimpleMDE::make('page.content')->title(__('admin_page.content')),
             ])
         ];
     }
 
     /**
-     * @param FormResultRequest $formResultRequest
-     * @param FormResult $formResult
+     * @param PageRequest $pageRequest
+     * @param Page $page
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function createOrUpdate(FormResultRequest $formResultRequest, FormResult $formResult)
+    public function createOrUpdate(PageRequest $pageRequest, Page $page)
     {
-        $formResult->fill($formResultRequest->validated('form_result'));
-        $formResult->save();
+        $page->fill($pageRequest->validated('page'));
+        $page->save();
         Toast::info(__('platform.entity.saved'));
-        return redirect()->route('platform.form_result.list');
+        return redirect()->route('platform.page.list');
     }
 
+
     /**
-     * @param FormResult $formResult
+     * @param Page $page
      *
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      *
      */
-    public function remove(FormResult $formResult)
+    public function remove(Page $page)
     {
-        $formResult->delete();
+        $page->delete();
         Toast::info(__('platform.entity.removed'));
-        return redirect()->route('platform.form_result.list');
+        return redirect()->route('platform.page.list');
     }
 
 }

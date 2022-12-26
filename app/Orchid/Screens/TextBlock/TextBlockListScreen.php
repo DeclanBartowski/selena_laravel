@@ -10,7 +10,6 @@ use Orchid\Screen\Action;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
-
 class TextBlockListScreen extends Screen
 {
     /**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Orchid\Screens\Advantage\AdvantageEditScreen;
 use App\Orchid\Screens\Advantage\AdvantageListScreen;
+use App\Orchid\Screens\MetaFields\MetaFieldEditScreen;
 use App\Orchid\Screens\Cabinet\CabinetEditScreen;
 use App\Orchid\Screens\Cabinet\CabinetListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -15,6 +16,9 @@ use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
 use App\Orchid\Screens\FormResult\FormResultEditScreen;
 use App\Orchid\Screens\FormResult\FormResultListScreen;
+use App\Orchid\Screens\MetaFields\MetaFieldListScreen;
+use App\Orchid\Screens\Page\PageEditScreen;
+use App\Orchid\Screens\Page\PageListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -22,6 +26,8 @@ use App\Orchid\Screens\Service\ServiceEditScreen;
 use App\Orchid\Screens\Service\ServiceListScreen;
 use App\Orchid\Screens\ServicePrice\ServicePriceEditScreen;
 use App\Orchid\Screens\ServicePrice\ServicePriceListScreen;
+use App\Orchid\Screens\Setting\SettingEditScreen;
+use App\Orchid\Screens\Setting\SettingListScreen;
 use App\Orchid\Screens\TextBlock\TextBlockEditScreen;
 use App\Orchid\Screens\TextBlock\TextBlockListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -213,3 +219,37 @@ Route::screen('service/{id?}', ServiceEditScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
     ->parent('platform.service.list')
     ->push(__('platform.services.name')));
+
+
+Route::screen('meta_fields', MetaFieldListScreen::class)
+    ->name('platform.meta_field.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.meta_fields.name')));
+Route::screen('meta_field/{id?}', MetaFieldEditScreen::class)
+    ->name('platform.meta_fields.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.meta_field.list')
+        ->push(__('platform.meta_fields.name')));
+
+Route::screen('pages', PageListScreen::class)
+    ->name('platform.page.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.page.name')));
+Route::screen('page/{id?}', PageEditScreen::class)
+    ->name('platform.page.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.page.list')
+        ->push(__('platform.page.name')));
+
+Route::screen('settings', SettingListScreen::class)
+    ->name('platform.setting.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.index')
+        ->push(__('platform.setting.name')));
+Route::screen('setting/{id?}', SettingEditScreen::class)
+    ->name('platform.setting.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+        ->parent('platform.setting.list')
+        ->push(__('platform.setting.name')));

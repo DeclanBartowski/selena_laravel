@@ -6,11 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
-use Orchid\Attachment\Models\Attachment;
 use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
-
-
 
 class TextBlock extends Model
 {
