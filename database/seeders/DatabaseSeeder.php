@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             PagesSeeder::class,
             SettingSeeder::class,
             MetaFieldsSeeder::class,
+            ServicePricesSeeder::class,
+            ServicesSeeder::class,
         ]);
         FormResult::factory()->count(10)->create();
     }

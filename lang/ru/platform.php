@@ -30,4 +30,10 @@ return [
     'form_result' => [
         'name' => 'Результаты форм',
     ],
+    'service_prices' => [
+        'name' => 'Цены на услуги',
+    ],
+    'services' => [
+        'name' => 'Услуги',
+    ],
 ];

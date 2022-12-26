@@ -18,6 +18,10 @@ use App\Orchid\Screens\FormResult\FormResultListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
+use App\Orchid\Screens\Service\ServiceEditScreen;
+use App\Orchid\Screens\Service\ServiceListScreen;
+use App\Orchid\Screens\ServicePrice\ServicePriceEditScreen;
+use App\Orchid\Screens\ServicePrice\ServicePriceListScreen;
 use App\Orchid\Screens\TextBlock\TextBlockEditScreen;
 use App\Orchid\Screens\TextBlock\TextBlockListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -181,3 +185,31 @@ Route::screen('form_result/{id?}', FormResultEditScreen::class)
     ->breadcrumbs(fn(Trail $trail) => $trail
         ->parent('platform.form_result.list')
         ->push(__('platform.form_result.name')));
+
+// Platform > Service Prices
+Route::screen('service_prices', ServicePriceListScreen::class)
+    ->name('platform.service_price.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+    ->parent('platform.index')
+    ->push(__('platform.service_prices.name')));
+
+// Platform > Service Prices > Service Price
+Route::screen('service_price/{id?}', ServicePriceEditScreen::class)
+    ->name('platform.service_price.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+    ->parent('platform.service_price.list')
+    ->push(__('platform.service_prices.name')));
+
+// Platform > Services
+Route::screen('services', ServiceListScreen::class)
+    ->name('platform.service.list')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+    ->parent('platform.index')
+    ->push(__('platform.services.name')));
+
+// Platform > Services > Service
+Route::screen('service/{id?}', ServiceEditScreen::class)
+    ->name('platform.service.edit')
+    ->breadcrumbs(fn(Trail $trail) => $trail
+    ->parent('platform.service.list')
+    ->push(__('platform.services.name')));
