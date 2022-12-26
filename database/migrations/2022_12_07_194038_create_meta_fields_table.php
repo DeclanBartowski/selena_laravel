@@ -16,6 +16,10 @@ return new class extends Migration
         Schema::create('meta_fields', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('route')->unique();
+            $table->string('title');
+            $table->string('keywords');
+            $table->string('description');
         });
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->boolean('active')->default(true);
             $table->string('code')->unique();
+            $table->string('title');
             $table->text('content');
         });
     }

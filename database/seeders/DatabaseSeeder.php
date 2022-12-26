@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             CabinetSeeder::class,
             AdvantageSeeder::class,
             TextBlocksSeeder::class,
+            PagesSeeder::class,
+            SettingSeeder::class,
+            MetaFieldsSeeder::class,
         ]);
         FormResult::factory()->count(10)->create();
     }

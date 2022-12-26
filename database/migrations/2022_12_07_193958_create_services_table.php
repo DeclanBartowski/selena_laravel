@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        //todo
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -21,7 +20,13 @@ return new class extends Migration
             $table->integer('sort')->default(500);
             $table->string('name');
             $table->string('code')->unique();
-            $table->string('picture_main_page')->nullable();
+            $table->json('services')->nullable();
+            $table->string('preview_picture')->nullable();
+            $table->text('preview_content')->nullable();
+            $table->string('detail_picture')->nullable();
+            $table->text('detail_content')->nullable();
+            $table->string('main_picture')->nullable();
+            $table->text('main_content')->nullable();
         });
     }
 
