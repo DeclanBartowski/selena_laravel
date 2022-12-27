@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', \App\Http\Controllers\IndexController::class);
+
+
+Route::get('/contacts', \App\Http\Controllers\ContactsController::class);
+Route::get('/about', \App\Http\Controllers\AboutController::class);
+
+Route::get('/{page}', \App\Http\Controllers\TextPageController::class);
+
