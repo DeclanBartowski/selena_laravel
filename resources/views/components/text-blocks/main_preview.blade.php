@@ -1,7 +1,7 @@
 <div class="main-section" @isset($page->preview_picture)style="background-image:url('{{$page->preview_picture}}')"@endisset>
-    @isset($page->video)
+    @isset($page->video_link)
         <video class="video" preload="yes" muted="muted" autoplay playsinline loop>
-            <source src="{{\Orchid\Attachment\Models\Attachment::find($page->video)->url()}}" class="source"
+            <source src="{{$page->video_link}}" class="source"
                     type="video/mp4">
         </video>
     @endisset

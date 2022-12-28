@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-md-7 unified_left-column">
                 @isset($page->name)
-                    <div class="section-title">{{$page->name ?? ''}}</div>
+                    <div class="section-title">{{$page->name}}</div>
                 @endisset
                 {!! $page->detail_content ?? '' !!}}
             </div>

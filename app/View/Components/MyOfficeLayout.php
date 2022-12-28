@@ -27,9 +27,8 @@ class MyOfficeLayout extends Component
      */
     public function render()
     {
-        $page = $this->page;
         $data = Cabinet::first();
 
-        return view('components.my-office-layout', compact('page', 'data'));
+        return view(sprintf('components.%s.my-office', $this->page), compact('data'));
     }
 }

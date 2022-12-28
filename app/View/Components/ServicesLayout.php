@@ -27,8 +27,8 @@ class ServicesLayout extends Component
      */
     public function render()
     {
-        $page = $this->page;
         $services = Service::where('active', true)->orderBy('sort', 'asc')->get();
-        return view('components.services-layout', compact('services', 'page'));
+
+        return view(sprintf('components.%s.services', $this->page), compact('services'));
     }
 }

@@ -3,14 +3,14 @@
         <div class="col-md-5 left-column">
             <div class="my-office_desc">
                 @isset($data->name)
-                    <div class="section-title">{{$data->name ?? ''}}</div>
+                    <div class="section-title">{{$data->name}}</div>
                 @endisset
                 {!! $data->preview ?? '' !!}
                 <ul class="my-office_list">
                     @isset($data->children_area_value)
                         <li>
                             <div class="my-office_item">
-                                <span class="item-number">{{$data->children_area_value ?? ''}}</span>
+                                <span class="item-number">{{$data->children_area_value}}</span>
                                 {!! $data->children_area_description ?? '' !!}
                             </div>
                         </li>
@@ -18,7 +18,7 @@
                     @isset($data->session_value)
                         <li>
                             <div class="my-office_item">
-                                <span class="item-number">{{$data->session_value ?? ''}}</span>
+                                <span class="item-number">{{$data->session_value}}</span>
                                 {!! $data->session_description ?? '' !!}
                             </div>
                         </li>
@@ -26,7 +26,7 @@
                     @isset($data->cabinet_value)
                         <li>
                             <div class="my-office_item">
-                                <span class="item-number">{{$data->cabinet_value ?? ''}}</span>
+                                <span class="item-number">{{$data->cabinet_value}}</span>
                                 {!! $data->cabinet_description ?? '' !!}
                             </div>
                         </li>

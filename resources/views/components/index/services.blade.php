@@ -3,7 +3,7 @@
         <div class="container">
             <div class="services-section_header">
                 <div class="section-title">{{__('index.into_world')}}</div>
-                <a href="/services" class="main-btn mobile-hidden">{{__('index.all_services')}} <span class="ico-arrow"></span></a>
+                <a href="{{route('services.index')}}" class="main-btn mobile-hidden">{{__('index.all_services')}} <span class="ico-arrow"></span></a>
             </div>
         </div>
         <div class="services-slider">
@@ -13,7 +13,7 @@
                         <img data-src="{{asset($service->main_picture)}}" alt="alt">
                     @endisset
                     <div class="service-item_desc">
-                        <a href="/services/{{$service->code}}">
+                        <a href="{{route('services.show', $service->code)}}">
                             @isset($service->name)
                                 <span class="service-item_title">{{$service->name}}</span>
                             @endisset
@@ -26,7 +26,7 @@
             @endforeach
         </div>
         <div class="mobile-visible container">
-            <a href="/services" class="main-btn unified_mobile-btn">{{__('index.all_services')}} <span class="ico-arrow"></span></a>
+            <a href="{{route('services.index')}}" class="main-btn unified_mobile-btn">{{__('index.all_services')}} <span class="ico-arrow"></span></a>
         </div>
     </div>
 @endisset

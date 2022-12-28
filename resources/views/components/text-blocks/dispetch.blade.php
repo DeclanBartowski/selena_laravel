@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6 order-md-2">
                 @isset($page->name)
-                    <div class="section-title">Ваш проводник</div>
+                    <div class="section-title">{{$page->name}}</div>
                 @endisset
                 {!! $page->detail_content ?? '' !!}
             </div>

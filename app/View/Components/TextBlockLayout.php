@@ -30,9 +30,9 @@ class TextBlockLayout extends Component
     public function render()
     {
         $page = TextBlock::where('code', $this->code)
-                ->where('active', true)
-                ->first();
+            ->where('active', true)
+            ->first();
 
-        return view('components.text-block-layout', compact('page'));
+        return view('components.text-blocks.' . $this->code, compact('page'));
     }
 }

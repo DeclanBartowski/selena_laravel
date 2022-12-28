@@ -26,12 +26,39 @@ class AdvantagesLayout extends Component
      */
     public function render()
     {
-        $page = $this->page;
         $advantages = Advantage::where('active', true)
             ->orderBy('sort', 'asc')
             ->get()
             ->toArray();
 
-        return view('components.advantages-layout', compact('page', 'advantages'));
+        if ($advantages) {
+            $cnt = $globalCnt = 1;
+            $wrapClass = [
+                1 => '',
+                2 => '',
+                3 => 'item-third',
+                4 => 'text-right',
+            ];
+            $subWrapClass = [
+                1 => 'desc-right desc-second',
+                2 => '',
+                3 => 'desc-three',
+                4 => 'desc-right',
+            ];
+
+            foreach ($advantages as $key => &$arItem) {
+                if ($cnt === 5) {
+                    $cnt = 1;
+                }
+                $arItem['wrap_class'] = $wrapClass[$cnt];
+                $arItem['sub_wrap_class'] = $subWrapClass[$cnt];
+                $arItem['item_number'] = $globalCnt < 10 ? '0' . $globalCnt : $globalCnt;
+                $globalCnt++;
+                $cnt++;
+            }
+            $advantages = array_chunk($advantages, 2);
+        }
+
+        return view(sprintf('components.%s.advantages', $this->page), compact('advantages'));
     }
 }

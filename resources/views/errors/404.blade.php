@@ -19,9 +19,7 @@
 </head>
 <body>
 <!--[if lt IE 10]>
-<p class="browsehappy"><br>Вы используете <strong>устаревший</strong> браузер.
-    Пожалуйста, <a href="http://browsehappy.com/">обновите его</a> для корректного
-    отображения сайтов.</p>
+<p class="browsehappy">{{__('404.old_browser')}}</p>
 <![endif]-->
 <div class="global-wrapper">
     <div class="wrapper-loader">
@@ -29,16 +27,16 @@
             <div class="logo-loader"></div>
         </div>
         <div class="wrapper_loader-text">
-            <span class="loader-text">Погрузитесь в наш мир</span>
+            <span class="loader-text">{{__('404.world')}}</span>
         </div>
     </div>
 
     <main class="main-content">
         <div class="error-section" style="background: url('{{asset('img/bg/404.jpg')}}') no-repeat center top;background-size: cover;">
             <div class="container">
-                <div class="error-number section-title">404</div>
-                <p>Извините, такой страницы нет</p>
-                <a href="/" class="main-btn">Перейти на главную</a>
+                <div class="error-number section-title">{{__('404.404')}}</div>
+                <p>{{__('404.no_page')}}</p>
+                <a href="/" class="main-btn">{{__('404.to_index')}}</a>
             </div>
         </div>
     </main>

@@ -18,6 +18,10 @@ Route::get('/', \App\Http\Controllers\IndexController::class);
 
 Route::get('/contacts', \App\Http\Controllers\ContactsController::class);
 Route::get('/about', \App\Http\Controllers\AboutController::class);
+Route::resource('services', \App\Http\Controllers\ServiceController::class)->only([
+    'index',
+    'show'
+]);
 
 Route::get('/{page}', \App\Http\Controllers\TextPageController::class);
 

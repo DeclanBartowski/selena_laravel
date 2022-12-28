@@ -1,7 +1,7 @@
 <div class="banner-section" @isset($page->preview_picture)style="background-image:url('{{$page->preview_picture}}')"@endisset>
-    @isset($page->video)
+    @isset($page->video_link)
         <video class="video video-mod video-about" preload="yes" muted="muted" autoplay playsinline loop>
-            <source src="{{\Orchid\Attachment\Models\Attachment::find($page->video)->url()}}" class="source" type="video/mp4">
+            <source src="{{$page->video_link}}" class="source" type="video/mp4">
         </video>
     @endisset
     <div class="container">
