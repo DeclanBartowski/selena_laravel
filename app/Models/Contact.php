@@ -9,7 +9,7 @@ use Orchid\Screen\AsSource;
 
 class Contact extends Model
 {
-    use HasFactory , Filterable , AsSource;
+    use HasFactory, Filterable, AsSource;
     /**
      * The attributes that are mass assignable.
      *

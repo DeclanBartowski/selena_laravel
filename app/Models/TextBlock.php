@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Attachment\Models\Attachment;
 use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 use Orchid\Attachment\Attachable;
@@ -41,6 +42,10 @@ class TextBlock extends Model
         );
     }
 
+    public function getVideoLinkAttribute()
+    {
+        return $this->attributes['video'] ? Attachment::find($this->attributes['video'])->url() : null;
+    }
 
 
 }
