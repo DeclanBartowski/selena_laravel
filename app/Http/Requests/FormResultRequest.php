@@ -29,6 +29,7 @@ class FormResultRequest extends FormRequest
             'form_result.name' => '',
             'form_result.email' => '',
             'form_result.phone' => '',
+            'form_result.receive_news' => '',
         ];
     }
 }

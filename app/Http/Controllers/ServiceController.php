@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\ServicePrice;
 
 class ServiceController extends Controller
 {
@@ -29,7 +30,12 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        return view('services.detail', compact('service'));
+
+        $service->services && is_array($service->services)
+            ? $servicePrices = ServicePrice::whereIn('id', $service->services)->get()
+            : null;
+
+        return view('services.detail', compact('service', 'servicePrices'));
     }
 
 }

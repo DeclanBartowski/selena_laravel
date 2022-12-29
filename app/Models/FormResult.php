@@ -21,6 +21,7 @@ class FormResult extends Model
         'name',
         'email',
         'phone',
+        'receive_news',
     ];
 
 

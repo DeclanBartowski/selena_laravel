@@ -29,4 +29,8 @@ class Service extends Model
         'services' => 'array',
     ];
 
+    public function getRouteKeyName() {
+        return 'code';
+    }
+
 }

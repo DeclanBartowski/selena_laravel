@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    {!! SEOMeta::generate() !!}
     <meta charset="UTF-8" />
     <meta content="browserconfig.xml" name="msapplication-config" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +28,7 @@
             <div class="logo-loader"></div>
         </div>
         <div class="wrapper_loader-text">
-            <span class="loader-text">Погрузитесь в наш мир</span>
+            <span class="loader-text">{{__('layout-main.to_our_world')}}</span>
         </div>
     </div>
 
@@ -37,20 +38,21 @@
         <div class="menu-fixed_body">
             <div class="menu-fixed_content">
                 <ul class="head-menu">
-                    <li><a href="">О проекте</a></li>
-                    <li><a href="">Услуги</a></li>
-                    <li><a href="">Контакты</a></li>
+                    <li><a href="{{route('about')}}">{{__('layout-main.about')}}</a></li>
+                    <li><a href="{{route('services.index')}}">{{__('layout-main.services')}}</a></li>
+                    <li><a href="{{route('contacts')}}">{{__('layout-main.contacts')}}</a></li>
                 </ul>
-                <ul class="social-network fixed_social-network">
-                    <li><a href="mailto:"><img data-src="img/icons/social/01.svg" alt="alt"></a></li>
-                    <li><a href="" target="_blank"><img data-src="img/icons/social/02.svg" alt="alt"></a></li>
-                    <li><a href="" target="_blank"><img data-src="img/icons/social/03.svg" alt="alt"></a></li>
-                </ul>
-                <a href="tel:+79097907117" class="fixed_phone-number"><span class="ico-phone"></span>+7 (909) 790-71-17</a>
-                <a href="#callback-2" data-toggle="modal" class="main-btn">Заказать звонок</a>
+
+                <x-socials-list class="fixed_social-network"/>
+                <x-phone class="fixed_phone-number"/>
+
+                <a href="#callback-2" data-toggle="modal" class="main-btn">{{__('layout-main.get_call')}}</a>
             </div>
         </div>
-        <span class="menu-fixed_text"><span class="text">Меню</span><span class="text-2">закрыть</span></span>
+        <span class="menu-fixed_text">
+            <span class="text">{{__('layout-main.menu')}}</span>
+            <span class="text-2">{{__('layout-main.close')}}</span>
+        </span>
     </div>
     <header class="ui-header">
         <div class="container">
@@ -59,18 +61,15 @@
                     <div class="hamburger-inner"></div>
                 </div>
             </div>
-            <ul class="social-network tablet-small_hidden">
-                <li><a href="mailto:"><img data-src="img/icons/social/01.svg" alt="alt"></a></li>
-                <li><a href="" target="_blank"><img data-src="img/icons/social/02.svg" alt="alt"></a></li>
-                <li><a href="" target="_blank"><img data-src="img/icons/social/03.svg" alt="alt"></a></li>
-            </ul>
+            <x-socials-list class="tablet-small_hidden"/>
             <div class="head-logo">
-                <a href=""><img data-src="img/static/logo.svg" alt="alt"></a>
+                <a href="/">
+                    <img data-src="{{asset('img/static/logo.svg')}}" alt="alt">
+                </a>
             </div>
-            <a href="tel:+79097907117" class="head_phone-number"><span class="ico-phone"></span>+7 (909) 790-71-17</a>
+            <x-phone class="head_phone-number"/>
         </div>
     </header>
-
 
     <!-- END UI-HEADER -->
     <main class="main-content">
@@ -84,54 +83,45 @@
             <div class="row">
                 <div class="main-footer_left-column">
                     <div class="footer-logo">
-                        <a href=""><img data-src="img/static/logo.svg" alt="alt"></a>
+                        <a href="/">
+                            <img data-src="{{asset('img/static/logo.svg')}}" alt="alt">
+                        </a>
                     </div>
-                    <ul class="social-network">
-                        <li><a href="mailto:"><img data-src="img/icons/social/01.svg" alt="alt"></a></li>
-                        <li><a href="" target="_blank"><img data-src="img/icons/social/02.svg" alt="alt"></a></li>
-                        <li><a href="" target="_blank"><img data-src="img/icons/social/03.svg" alt="alt"></a></li>
-                    </ul>
+                    <x-socials-list class=""/>
                 </div>
                 <div class="main-footer_right-column">
                     <div class="row">
-                        <div class="col-md-5 col-sm-12">
-                            <div class="footer-title"><a href="">Услуги</a></div>
-                            <ul class="footer-menu">
-                                <li><a href="">Трансактный анализ</a></li>
-                                <li><a href="">Тета-Хилинг</a></li>
-                                <li><a href="">Ведическая астрология - Джйотиш</a></li>
-                                <li><a href="">Западная астрология</a></li>
-                                <li><a href="">Системные расстановки</a></li>
-                                <li><a href="">Васту</a></li>
-                            </ul>
-                        </div>
+
+                        <x-services-menu/>
                         <div class="col-md-3 col-sm-6">
                             <ul class="footer-mod_menu">
-                                <li><a href="/about">О проекте</a></li>
-                                <li><a href="">Мой кабинет</a></li>
+                                <li><a href="/about">{{__('layout-main.about')}}</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4 col-sm-6 right-cell">
-                            <a href="tel:+79097907117" class="footer_phone-number"><span class="ico-phone"></span>+7 (909) 790-71-17</a> <br>
-                            <a href="#callback-2" data-toggle="modal" class="main-btn footer-callback">Заказать звонок</a>
+                            <x-phone class="footer_phone-number"/>
+                            <br>
+                            <a href="#callback-2" data-toggle="modal" class="main-btn footer-callback">{{__('layout-main.get_call')}}</a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row footer_bottom-row">
                 <div class="main-footer_left-column">
-                    <div class="copyright">&#169; Компания, Selena</div>
+                    <div class="copyright">&#169; {{__('layout-main.company')}}</div>
                 </div>
                 <div class="main-footer_right-column">
                     <div class="row">
                         <div class="col-sm-9">
                             <ul class="footer_bottom_btn">
-                                <li><a href="/user-agreement">Пользовательское соглашение</a></li>
-                                <li><a href="/privacy-policy">Политика конфиденциальности</a></li>
+                                <li><a href="/user-agreement">{{__('layout-main.user_agreement')}}</a></li>
+                                <li><a href="/privacy-policy">{{__('layout-main.privacy_policy')}}</a></li>
                             </ul>
                         </div>
                         <div class="col-sm-3 right-cell">
-                            <a href="#application-accepted" data-toggle="modal" class="footer-studio"><img data-src="img/static/studio.svg" alt="alt"></a>
+                            <a href="#application-accepted" data-toggle="modal" class="footer-studio">
+                                <img data-src="{{asset('img/static/studio.svg')}}" alt="alt">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -146,24 +136,27 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <button class="close" data-dismiss="modal" type="button"><span class="ico-close"></span></button>
-            <div class="section-title popup-title">Получить консультацию</div>
-            <form action="#" class="callback-form">
+            <div class="section-title popup-title">{{__('form_requests.get_consult')}}</div>
+            <form action="{{route('send-form')}}" class="callback-form" method="POST">
+                <input type="hidden" name="form_result[title]" value="{{__('form_requests.get_consult')}}">
+                <p class="send-status"></p>
+                @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control requiredField callback-name">
-                    <label class="form-label">Имя</label>
+                    <input type="text" class="form-control requiredField callback-name" name="form_result[name]">
+                    <label class="form-label">{{__('form_requests.name')}}</label>
                 </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control requiredField callback-phone">
-                    <label class="form-label">Телефон</label>
+                    <input type="tel" class="form-control requiredField callback-phone" name="form_result[phone]">
+                    <label class="form-label">{{__('form_requests.phone')}}</label>
                 </div>
                 <div class="popup-policy">
                     <label class="unified-checkbox">
                         <input value="" type="checkbox" name="checkbox" checked>
-                        <span class="checkbox-text">Я принимаю условия <a href="">политики конфиденциальности</a></span>
+                        <span class="checkbox-text">{{__('form_requests.accept')}} <a href="/privacy-policy" target="_blank">{{__('form_requests.privacy')}}</a></span>
                     </label>
                 </div>
                 <div class="wrapper_popup-form_submit main-btn">
-                    Отправить <span class="ico-arrow"></span>
+                    {{__('form_requests.send')}} <span class="ico-arrow"></span>
                     <input type="submit" class="popup-form_submit js_form-submit" value="">
                 </div>
             </form>
@@ -175,24 +168,27 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <button class="close" data-dismiss="modal" type="button"><span class="ico-close"></span></button>
-            <div class="section-title popup-title">Заказать звонок</div>
-            <form action="#" class="callback-form">
+            <div class="section-title popup-title">{{__('form_requests.get_consult')}}</div>
+            <form action="{{route('send-form')}}" class="callback-form" method="POST">
+                <p class="send-status"></p>
+                <input type="hidden" name="form_result[title]" value="{{__('form_requests.get_consult')}}">
+                @csrf
                 <div class="form-group">
-                    <input type="text" class="form-control requiredField callback-name">
-                    <label class="form-label">Имя</label>
+                    <input type="text" class="form-control requiredField callback-name" name="form_result[name]">
+                    <label class="form-label">{{__('form_requests.name')}}</label>
                 </div>
                 <div class="form-group">
-                    <input type="tel" class="form-control requiredField callback-phone">
-                    <label class="form-label">Телефон</label>
+                    <input type="tel" class="form-control requiredField callback-phone" name="form_result[phone]">
+                    <label class="form-label">{{__('form_requests.phone')}}</label>
                 </div>
                 <div class="popup-policy">
                     <label class="unified-checkbox">
                         <input value="" type="checkbox" name="checkbox" checked>
-                        <span class="checkbox-text">Я принимаю условия <a href="">политики конфиденциальности</a></span>
+                        <span class="checkbox-text">{{__('form_requests.accept')}} <a href="/privacy-policy" target="_blank">{{__('form_requests.privacy')}}</a></span>
                     </label>
                 </div>
                 <div class="wrapper_popup-form_submit main-btn">
-                    Отправить <span class="ico-arrow"></span>
+                    {{__('form_requests.send')}} <span class="ico-arrow"></span>
                     <input type="submit" class="popup-form_submit js_form-submit" value="">
                 </div>
             </form>
@@ -205,7 +201,7 @@
         <div class="modal-content">
             <button class="close" data-dismiss="modal" type="button"><span class="ico-close"></span></button>
             <span class="ico-check popup-check"></span>
-            <p class="modal-text">Ваша заявка успешно отправлена!</p>
+            <p class="modal-text">{{__('form_requests.submitted')}}</p>
         </div>
     </div>
 </div>
