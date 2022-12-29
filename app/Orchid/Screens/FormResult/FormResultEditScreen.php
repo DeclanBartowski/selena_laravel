@@ -91,6 +91,7 @@ class FormResultEditScreen extends Screen
                 Input::make('form_result.name')->title(__('admin_form_results.name')),
                 Input::make('form_result.email')->title(__('admin_form_results.email')),
                 Input::make('form_result.phone')->title(__('admin_form_results.phone')),
+                Input::make('form_result.receive_news')->title(__('admin_form_results.receive_news')),
             ])
         ];
     }

@@ -177,7 +177,8 @@ jQuery(document).ready(function($) {
 		}, 800);
 		return false;
 	});
-	$('.js_form-submit').on("click", function() {
+	$('.js_form-submit').on("click", function(e) {
+		e.preventDefault();
 		var jhis = $(this).closest('form');
 		$(jhis).find('.requiredField').removeClass('input-error');
 		$(jhis).find('.error').remove();
@@ -210,8 +211,27 @@ jQuery(document).ready(function($) {
 				}
 			}
 		});
-		if (error == 0) {
-			/*отправка формы**/
+		if (error === 0) {
+            let formData = new FormData(jhis[0]);
+
+            $.ajax({
+                type: "POST",
+                url: jhis.attr('action'),
+                data: formData,
+                dataType: 'json',
+                contentType: false,
+                processData: false,
+                success: function(data) {
+					if (data.status === 'success') {
+                        $('#' + $(jhis).parents('.js-modal').attr('id')).modal('hide');
+                        $('#application-accepted').modal('show');
+                        jhis[0].reset();
+					}
+					jhis.find('.send-status').text(data.message);
+                }
+            });
+
+            return false;
 		} else {
 			return false;
 		}

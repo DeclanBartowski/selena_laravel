@@ -18,8 +18,9 @@ return new class extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone');
+            $table->string('receive_news')->nullable();
         });
     }
 

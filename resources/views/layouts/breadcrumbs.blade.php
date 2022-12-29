@@ -1,4 +1,8 @@
-<ul class="breadcrumbs">
-    <li><a href="">Главная</a></li>
-    <li>Контакты</li>
-</ul>
+@if(Breadcrumbs::has())
+    <ul class="breadcrumbs">
+            <x-tabuna-breadcrumbs
+                    class="breadcrumb-item"
+                    active="active"
+            />
+    </ul>
+@endif
